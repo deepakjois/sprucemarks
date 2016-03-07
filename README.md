@@ -1,6 +1,4 @@
-# Sprucemarks
-
-<img src="https://raw.githubusercontent.com/ForestMist/sprucemarks/master/images/sprucemarks.jpg" width="700" height="280" alt="">
+<img src="https://raw.githubusercontent.com/ForestMist/sprucemarks/master/images/sprucemarks.jpg" alt="">
 
 Sprucemarks is a Google Chrome Extension that automatically sorts your bookmarks.
 
