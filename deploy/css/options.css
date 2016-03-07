@@ -1,0 +1,165 @@
+body { font-family: Helvetica, Arial, sans-serif }
+body * {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.body {
+    margin: 0 auto;
+    padding: 10px 10px 40px 10px;
+    position: relative;
+    width: 750px;
+}
+a {
+    color: #3e94d6;
+    text-decoration: none;
+}
+a:hover,
+a:focus {
+    color: #5eaef1;
+    text-decoration: underline;
+}
+header {
+    background: url('../images/icon128.png') no-repeat 10px 10px;
+    float: left;
+    height: 148px;
+    padding: 0 0 0 156px;
+    position: relative;
+    width: 720px;
+}
+h1 {
+    color: #666;
+    font-size: 36px;
+    font-weight: bold;
+    margin: 0;
+    padding-top: 50px;
+}
+h1 a,
+h1 a:hover,
+h1 a:focus {
+    color: #666;
+    text-decoration: none;
+}
+h2 {
+    color: #666;
+    font-size: 12px;
+    line-height: 0;
+    margin: 3px 0 0 45px;
+}
+hr {
+    border: none;
+    border-bottom: 1px dashed #ccc;
+    border-bottom-left-radius: 20px 1px;
+    border-bottom-right-radius: 20px 1px;
+    clear: left;
+    display: block;
+    float: left;
+    height: 20px;
+    margin: 0 0 70px 0;
+    width: 100%;
+}
+input {
+    font-size: 16px;
+}
+input[type=checkbox] {
+    -webkit-transform: scale(2,2);
+    transform: scale(2,2);
+}
+input[type=number] {
+    border: none;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    color: #3e94d6;
+    margin: 0;
+    text-align: center;
+    width: 55px;
+}
+button {
+    font-size: 14px;
+    margin-left: 179px;
+}
+.option {
+    clear: both;
+    margin: 0 0 18px 0;
+    padding: 0 0 18px 0;
+}
+.option,
+.option-title,
+.option-choice,
+.option-example {
+    float: left;
+}
+.option-title {
+    color: #666;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 18px;
+    padding: 0 20px 0 0;
+    text-align: left;
+    width: 186px;
+}
+.option-choice {
+    padding-left: 20px;
+    width: 70px;
+}
+.option-example {
+    color: #666;
+    line-height: 18px;
+    width: 474px;
+}
+.option-example .true,
+.option-example .false {
+    cursor: pointer;
+    opacity: 0.2;
+}
+.option-example p { margin-top: 0 }
+.css3-button {
+    background-color: #009aec;
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 90%, from(#649aec), to(#59b9ec));
+    background-image: linear-gradient(to bottom, #649aec 0%, #59b9ec 90%);
+    border: 2px solid #69c;
+    -webkit-border-radius: 16px;
+    border-radius: 16px;
+    box-shadow: rgba(128,192,255,0.75) 0 0 3px;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    float: left;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 21px;
+    padding: 0.3em 0.5em 0.35em 0.5em;
+    position: relative;
+    text-align: center;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    width: 100px;
+}
+.css3-button:hover,
+.css3-button:focus {
+    background-color: #4ebbff;
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 90%, from(#8ed4ff), to(#4ebbff));
+    background-image: linear-gradient(to bottom, #8ed4ff 0%, #4ebbff 90%);
+    box-shadow: 0 3px 6px rgba(128,192,255,0.75);
+    color: white !important;
+    text-decoration: none !important;
+}
+.clear {
+    clear: both;
+}
+#save-area {
+    margin: -20px 0 0 36px;
+    float: left;
+    clear: both;
+    color: #666;
+}
+#options-saved {
+    display: none;
+    float: left;
+    margin: 10px 0 0 10px;
+    text-align: center;
+    width: 120px;
+}
+footer {
+    float: right;
+    font-size: 12px;
+    margin-top: -8px;
+}

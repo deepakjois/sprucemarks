@@ -1,0 +1,19 @@
+{
+    "name": "Sprucemarks",
+    "description": "Automatically sort bookmarks.",
+    "background": {
+        "page": "background.html"
+    },
+    "icons": {
+       "16": "images/icon16.png",
+       "48": "images/icon48.png",
+       "128": "images/icon128.png"
+    },
+    "manifest_version": 2,
+    "minimum_chrome_version": "17",
+    "options_page": "options.html",
+    "permissions": [
+        "bookmarks"
+    ],
+    "version": "2016.2.21.1"
+}
