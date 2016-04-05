@@ -1,94 +1,118 @@
+//-----------
+// Variables
+//-----------
 var s = {
     "action": {}, // will hold various action oriented functions
-    "option": {} // will be retreived from the background.js page
-};
+    "option": {}  // will be retrieved from the background.js page
+}
 
+//-----------
+// Functions
+//-----------
 s.action.init = function() {
-    var request = {'request': 'options'},
-        init_resume = function(response) {
-            s.option = response; // all our options are based on background.js which should be considred authoritative
-            jQuery('input[type=checkbox]').bind('change', function() {
-                s.action.option_display_update(this);
-            });
-            jQuery('.true, .false').on('click', function(e) {
-                e.preventDefault();
-                var t = jQuery(this);
-                t.parents('.option').find('input[type=checkbox]').first().prop('checked', (t.prop('class') === 'true')).change();
-            });
-            s.action.restore_options();
-            jQuery('#save-area').on('click', function(e) {
-                e.preventDefault();
-                s.action.save_options();
-            });
-        };
-    if (chrome.extension.sendMessage === undefined) {
-        // for Chrome 20+
-        chrome.extension.sendRequest(request, init_resume);
-    } else {
-        // for Chrome 19 and lower
-        chrome.extension.sendMessage(request, init_resume);
-    }
-};
+    var request = { 'request': 'options' }
 
-s.action.option_display_update = function(t, speed) {
-    t = jQuery(t);
-    speed = (speed === undefined) ? 300 : 0;
-    var checked = t.prop('checked').toString();
-    t.parent().siblings('.option-example').children('.true, .false').each(function() {
-        var $this = jQuery(this);
-        if (checked === $this.prop('class')) {
-            $this.stop(true).fadeTo(speed, 1);
-        } else {
-            $this.stop(true).fadeTo(speed, 0.2);
+    var init_resume = function(response) {
+        var items, i
+
+        s.option = response // all our options are based on background.js which should be considered authoritative
+
+        s.action.restore_options()
+
+        items = document.querySelectorAll('input[type=checkbox]')
+        for (i = 0; i < items.length; i++) {
+            items[i].addEventListener('change', function() {
+                s.action.option_display_update(this)
+            })
         }
-    });
-};
+
+        items = document.querySelectorAll('.true, .false')
+        for (i = 0; i < items.length; i++) {
+            items[i].addEventListener('click', function(e) {
+                var checkbox = this.parentElement.parentElement.querySelector('input[type=checkbox]')
+                if (!this.classList.contains(checkbox.checked.toString())) {
+                    checkbox.checked = !checkbox.checked
+                    checkbox.dispatchEvent(new Event('change'))
+                }
+            })
+        }
+
+        document.getElementById('save-button').addEventListener('click', function(e) {
+            e.preventDefault()
+            s.action.save_options()
+        })
+    }
+
+    chrome.extension.sendMessage(request, init_resume)
+} // s.action.init
+
+s.action.option_display_update = function(t, animate) {
+    if (animate !== false) {
+        animate = true
+    }
+
+    var checkedClass = t.checked.toString()
+    var choices = t.parentElement.parentElement.querySelectorAll('.true, .false')
+
+    for (var i = 0; i < choices.length; i++) {
+        if (animate) {
+            choices[i].classList.remove('no-transition')
+        } else {
+            choices[i].classList.add('no-transition')
+        }
+
+        if (choices[i].classList.contains(checkedClass)) {
+            choices[i].classList.add('active')
+        } else {
+            choices[i].classList.remove('active')
+        }
+    }
+} // s.action.option_display_update
 
 s.action.restore_options = function() {
-    var i, j, type;
+    var element, i
     for (i in s.option) {
-        j = jQuery('#' + i);
-        type = j.prop('type').toLowerCase();
-        if (type === 'checkbox') {
-            j.prop('checked', s.option[i]);
-            s.action.option_display_update('#' + i, 'Faster, Pussycat! Kill! Kill!');
+        element = document.getElementById(i)
+        if (element.type === 'checkbox') {
+            element.checked = s.option[i]
+            s.action.option_display_update(element, false)
         } else {
-            j.val(s.option[i]);
+            element.value = s.option[i]
         }
     }
-};
+} // s.action.restore_options
 
 s.action.save_options = function() {
-    var i, j, type, round_number,
-        request = {
-            'request': 'options_set',
-            'option': s.option
-        },
-        animate = function() {
-            jQuery('#options-saved').fadeIn(500).delay(3000).fadeOut(500); // Show options-saved text to please the humans
-        };
-    for (i in s.option) {
-        j = jQuery('#' + i);
-        type = j.prop('type').toLowerCase();
-        if (type === 'checkbox') {
-            s.option[i] = j.prop('checked'); // returns true or false
-        } else if (type === 'number') {
-            round_number = Math.abs(Math.round(j.val()));
-            s.option[i] = (isNaN(round_number)) ? '0' : round_number.toString();
+    var element, round_number
+
+    for (var i in s.option) {
+        element = document.getElementById(i)
+        if (element.type === 'checkbox') {
+            s.option[i] = element.checked // returns true or false
+        } else if (element.type === 'number') {
+            round_number = Math.abs(Math.round(element.value))
+            s.option[i] = (isNaN(round_number)) ? '0' : round_number.toString()
         } else {
-            s.option[i] = j.val();
+            s.option[i] = element.value
         }
     }
-    console.log(s.option);
-    if (chrome.extension.sendMessage === undefined) {
-        // for Chrome 19 or lower
-        chrome.extension.sendRequest(request, animate);
-    } else {
-        // for Chrome 20+
-        chrome.extension.sendMessage(request, animate);
-    }
-};
 
-jQuery(document).ready(function() {
-    s.action.init();
-});
+    var request = {
+        'request': 'options_set',
+        'option': s.option
+    }
+
+    var animate = function() {
+        document.getElementById('options-saved').classList.add('saved-animation')
+        setTimeout(function() {
+            document.getElementById('options-saved').classList.remove('saved-animation')
+        }, 5250) // 250 ms more than the CSS animation
+    }
+
+    chrome.extension.sendMessage(request, animate)
+} // s.action.save_options
+
+//------------
+// Party Time
+//------------
+s.action.init()

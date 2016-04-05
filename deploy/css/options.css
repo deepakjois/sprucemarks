@@ -1,10 +1,13 @@
-body { font-family: Helvetica, Arial, sans-serif }
+body {
+    font-family: Helvetica, Arial, sans-serif;
+}
 body * {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
-.body {
+.wrapper {
     margin: 0 auto;
+    overflow: hidden;
     padding: 10px 10px 40px 10px;
     position: relative;
     width: 750px;
@@ -41,6 +44,7 @@ h1 a:focus {
 }
 h2 {
     color: #666;
+    cursor: default;
     font-size: 12px;
     line-height: 0;
     margin: 3px 0 0 45px;
@@ -61,6 +65,7 @@ input {
     font-size: 16px;
 }
 input[type=checkbox] {
+    cursor: pointer;
     -webkit-transform: scale(2,2);
     transform: scale(2,2);
 }
@@ -90,6 +95,7 @@ button {
 }
 .option-title {
     color: #666;
+    cursor: default;
     font-size: 14px;
     font-weight: bold;
     line-height: 18px;
@@ -103,6 +109,7 @@ button {
 }
 .option-example {
     color: #666;
+    cursor: default;
     line-height: 18px;
     width: 474px;
 }
@@ -110,6 +117,15 @@ button {
 .option-example .false {
     cursor: pointer;
     opacity: 0.2;
+    -webkit-transition: opacity 0.35s;
+    transition: opacity 0.35s;
+}
+.option-example .active {
+    opacity: 1;
+}
+.option-example .no-transition {
+    -webkit-transition: none;
+    transition: none;
 }
 .option-example p { margin-top: 0 }
 .css3-button {
@@ -142,9 +158,6 @@ button {
     color: white !important;
     text-decoration: none !important;
 }
-.clear {
-    clear: both;
-}
 #save-area {
     margin: -20px 0 0 36px;
     float: left;
@@ -152,11 +165,29 @@ button {
     color: #666;
 }
 #options-saved {
-    display: none;
+    cursor: default;
+    font-weight: bold;
     float: left;
     margin: 10px 0 0 10px;
+    opacity: 0;
     text-align: center;
     width: 120px;
+}
+@-webkit-keyframes savedAnimation {
+    0%   { opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 1; }
+    100% { opacity: 0; }
+}
+@keyframes savedAnimation {
+    0%   { opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 1; }
+    100% { opacity: 0; }
+}
+.saved-animation {
+    -webkit-animation: savedAnimation 5s;
+    animation: savedAnimation 5s;
 }
 footer {
     float: right;

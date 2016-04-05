@@ -10,10 +10,10 @@
        "128": "images/icon128.png"
     },
     "manifest_version": 2,
-    "minimum_chrome_version": "17",
+    "minimum_chrome_version": "20",
     "options_page": "options.html",
     "permissions": [
         "bookmarks"
     ],
-    "version": "2016.2.21.1"
+    "version": "2016.4.5.0"
 }

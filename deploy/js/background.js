@@ -33,11 +33,11 @@ function log(o) {
     if (s.log) {
         console.log(o);
     }
-}
+} // log
 
 function parseInteger(val) {
     return parseInt(val, 10);
-}
+} // parseInteger
 
 function local_version_less_than(local, compare) {
     var outcome = false;
@@ -59,7 +59,7 @@ function local_version_less_than(local, compare) {
         }
     }
     return outcome;
-}
+} // local_version_less_than
 
 //------------------------------------------------------------------------------
 // If the localStorage version does not match our manifest version then we have
@@ -555,11 +555,7 @@ function stop_collaborate_and_listen(request, sender, sendResponse) {
     }
 }
 
-if (chrome.extension.onMessage === undefined) {
-    chrome.extension.onRequest.addListener(stop_collaborate_and_listen);
-} else {
-    chrome.extension.onMessage.addListener(stop_collaborate_and_listen);
-}
+chrome.extension.onMessage.addListener(stop_collaborate_and_listen);
 
 //------------
 // Here we go
