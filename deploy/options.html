@@ -9,7 +9,7 @@
     <div class="wrapper">
         <header>
             <h1><a href="https://chrome.google.com/webstore/detail/fakeocdnmmmnokabaiflppclocckihoj" target="_blank">Sprucemarks</a></h1>
-            <h2>Automatically Sort Bookmarks<h2>
+            <h2>Automatically Sort Bookmarks</h2>
         </header>
 
         <hr>
@@ -19,11 +19,26 @@
                 <input type="checkbox" id="bookmarks_bar">
             </div>
             <div class="option-title">
-                Sort Bookmarks Bar
+                <label for="bookmarks_bar">Sort Bookmarks Bar</label>
+                <div class="option-sort">
+                    <select id="bookmarks_bar_sort">
+                        <option value="">...</option>
+                        <optgroup label="Alpha">
+                            <option value="alpha">A-Z</option>
+                            <option value="alphaReverse">Z-A</option>
+                        </optgroup>
+                        <optgroup label="Date Added">
+                            <option value="date">Newer - Older</option>
+                            <option value="dateReverse">Older - Newer</option>
+                        </optgroup>
+                    </select>
+                </div>
             </div>
             <div class="option-example">
-                <img class="true" src="images/bookmarks-bar-true.png" width="292" height="58" alt="">
-                <img class="false" src="images/bookmarks-bar-false.png" width="292" height="58" alt="">
+                <p>
+                    <img class="true" src="images/bookmarks-bar-true.png" width="292" height="58" alt="">
+                    <img class="false" src="images/bookmarks-bar-false.png" width="292" height="58" alt="">
+                </p>
             </div>
         </div>
 
@@ -32,10 +47,25 @@
                 <input type="checkbox" id="bookmarks_bar_sub">
             </div>
             <div class="option-title">
-                Sort Bookmarks Bar<br>Sub Folders
+                <label for="bookmarks_bar_sub">Sort Bookmarks Bar<br>Sub Folders</label>
+                <div class="option-sort">
+                    <select id="bookmarks_bar_sub_sort">
+                        <option value="">...</option>
+                        <optgroup label="Alpha">
+                            <option value="alpha">A-Z</option>
+                            <option value="alphaReverse">Z-A</option>
+                        </optgroup>
+                        <optgroup label="Date Added">
+                            <option value="date">Newer - Older</option>
+                            <option value="dateReverse">Older - Newer</option>
+                        </optgroup>
+                    </select>
+                </div>
             </div>
             <div class="option-example">
-                <img class="true" src="images/bookmarks-bar-sub-true.png" width="145" height="105" alt=""><img class="false" src="images/bookmarks-bar-sub-false.png" width="145" height="105" alt="">
+                <p>
+                    <img class="true" src="images/bookmarks-bar-sub-true.png" width="145" height="105" alt=""><img class="false" src="images/bookmarks-bar-sub-false.png" width="145" height="105" alt="">
+                </p>
             </div>
         </div>
 
@@ -46,10 +76,25 @@
                 <input type="checkbox" id="other_bookmarks">
             </div>
             <div class="option-title">
-                Sort Other Bookmarks
+                <label for="other_bookmarks">Sort Other Bookmarks</label>
+                <div class="option-sort">
+                    <select id="other_bookmarks_sort">
+                        <option value="">...</option>
+                        <optgroup label="Alpha">
+                            <option value="alpha">A-Z</option>
+                            <option value="alphaReverse">Z-A</option>
+                        </optgroup>
+                        <optgroup label="Date Added">
+                            <option value="date">Newer - Older</option>
+                            <option value="dateReverse">Older - Newer</option>
+                        </optgroup>
+                    </select>
+                </div>
             </div>
             <div class="option-example">
-                <img class="true" src="images/other-bookmarks-true.png" width="143" height="134" alt=""><img class="false" src="images/other-bookmarks-false.png" width="143" height="134" alt="">
+                <p>
+                    <img class="true" src="images/other-bookmarks-true.png" width="143" height="134" alt=""><img class="false" src="images/other-bookmarks-false.png" width="143" height="134" alt="">
+                </p>
             </div>
         </div>
 
@@ -58,11 +103,26 @@
                 <input type="checkbox" id="other_bookmarks_sub">
             </div>
             <div class="option-title">
-                Sort Other Bookmarks<br>Sub Folders
+                <label for="other_bookmarks_sub">Sort Other Bookmarks<br>Sub Folders</label>
+                <div class="option-sort">
+                    <select id="other_bookmarks_sub_sort">
+                        <option value="">...</option>
+                        <optgroup label="Alpha">
+                            <option value="alpha">A-Z</option>
+                            <option value="alphaReverse">Z-A</option>
+                        </optgroup>
+                        <optgroup label="Date Added">
+                            <option value="date">Newer - Older</option>
+                            <option value="dateReverse">Older - Newer</option>
+                        </optgroup>
+                    </select>
+                </div>
             </div>
             <div class="option-example">
-                <img class="true" src="images/other-bookmarks-sub-true.png" width="235" height="119" alt="">
-                <img class="false" src="images/other-bookmarks-sub-false.png" width="235" height="119" alt="">
+                <p>
+                    <img class="true" src="images/other-bookmarks-sub-true.png" width="235" height="119" alt="">
+                    <img class="false" src="images/other-bookmarks-sub-false.png" width="235" height="119" alt="">
+                </p>
             </div>
         </div>
 
@@ -73,10 +133,15 @@
                 <input type="checkbox" id="group_folders">
             </div>
             <div class="option-title">
-                Folders First
+                <label for="group_folders">Folders First</label>
             </div>
             <div class="option-example">
-                <img class="true" src="images/folders-first-true.png" width="145" height="129" alt=""><img class="false" src="images/folders-first-false.png" width="145" height="129" alt="">
+                <p>
+                    <img class="true" src="images/folders-first-true.png" width="145" height="129" alt=""><img class="false" src="images/folders-first-false.png" width="145" height="129" alt="">
+                </p>
+                <p>If enabled, folders will always be displayed together and sorted alphabetically (A-Z).</p>
+                <p>If disabled, folders will be sorted like the bookmarks around them.</p>
+
             </div>
         </div>
 
@@ -87,7 +152,7 @@
                 <input type="checkbox" id="create_delay">
             </div>
             <div class="option-title">
-                Delay Sorting of<br>New Bookmarks
+                <label for="create_delay">Delay Sorting of<br>New Bookmarks</label>
             </div>
             <div class="option-example">
                 <p>By <input type="number" id="create_delay_detail"> seconds.</p>

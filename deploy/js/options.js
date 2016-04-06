@@ -1,3 +1,5 @@
+'use strict'
+
 //-----------
 // Variables
 //-----------
@@ -29,7 +31,7 @@ s.action.init = function() {
         items = document.querySelectorAll('.true, .false')
         for (i = 0; i < items.length; i++) {
             items[i].addEventListener('click', function(e) {
-                var checkbox = this.parentElement.parentElement.querySelector('input[type=checkbox]')
+                var checkbox = this.parentElement.parentElement.parentElement.querySelector('input[type=checkbox]')
                 if (!this.classList.contains(checkbox.checked.toString())) {
                     checkbox.checked = !checkbox.checked
                     checkbox.dispatchEvent(new Event('change'))
