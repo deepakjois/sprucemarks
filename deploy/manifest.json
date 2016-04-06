@@ -1,5 +1,6 @@
 {
     "name": "Sprucemarks",
+    "short_name": "Sprucemarks",
     "description": "Automatically sort bookmarks.",
     "background": {
         "page": "background.html"
