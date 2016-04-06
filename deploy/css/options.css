@@ -58,8 +58,13 @@ hr {
     display: block;
     float: left;
     height: 20px;
-    margin: 0 0 70px 0;
+    margin: 0 0 65px 0;
     width: 100%;
+}
+label {
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
 }
 input {
     font-size: 16px;
@@ -95,13 +100,16 @@ button {
 }
 .option-title {
     color: #666;
-    cursor: default;
     font-size: 14px;
     font-weight: bold;
     line-height: 18px;
     padding: 0 20px 0 0;
     text-align: left;
     width: 186px;
+}
+.option-sort {
+    font-weight: normal;
+    margin: 1em 0 0 0;
 }
 .option-choice {
     padding-left: 20px;
@@ -127,7 +135,12 @@ button {
     -webkit-transition: none;
     transition: none;
 }
-.option-example p { margin-top: 0 }
+.option-example p {
+    margin-top: 0;
+}
+.option-example p:last-child {
+    margin-bottom: 0;
+}
 .css3-button {
     background-color: #009aec;
     background-image: -webkit-gradient(linear, 0% 0%, 0% 90%, from(#649aec), to(#59b9ec));
