@@ -136,7 +136,7 @@ s.get = function s_get(id, callback) { //
 s.get_ancestor_then_sort = function s_get_ancestor_then_sort(id, relay_id, parent_id, recurse) {
     chrome.bookmarks.get(id.toString(), function(o) {
         if (typeof o === 'undefined') {
-            // whoops, the bookmark we wanted to sort has been deleted before we could get to it
+            // oops, the bookmark we wanted to sort has been deleted before we could get to it
             s.sort(relay_id, parent_id, recurse, id)
         } else {
             if (parseInteger(o[0].parentId) === 0) {
@@ -176,7 +176,7 @@ s.init = function s_init() {
     })
 
     // By default id 1 will be the 'Bookmarks Bar' and id 2 will be 'Other Bookmarks'.
-    // Sometimes the id of 'Other Bookmarks' can be different if there was ever a mass delete and import though.
+    // Sometimes the id of 'Other Bookmarks' can be different if a mass delete and re-import ever took place.
     chrome.bookmarks.getChildren('0', function(o) {
         var i
         s.ancestor.bookmarks_bar = parseInteger(o[0].id)
@@ -239,7 +239,7 @@ s.install_or_upgrade = function s_install_or_upgrade() {
                 s.new_options = true
             }
 
-            check_version = '2016.4.5.0'
+            check_version = '2016.4.6.0'
             if (local_version_less_than(local_version, check_version)) {
                 log(messageUpgrade + check_version)
                 // add new sorting options
@@ -258,7 +258,7 @@ s.install_or_upgrade = function s_install_or_upgrade() {
 
 s.listeners = function s_listeners() {
     if (s.status.sort_active > 0) {
-        // sorting is still active, will try to activate listeners again in 500 milliseconds.
+        // sorting is still active, will try to activate listeners again in 500 milliseconds
         setTimeout(s.listeners, 500)
     } else {
         // activate listeners so we can keep things organized
@@ -400,7 +400,7 @@ s.reorder_queue = function s_reorder_queue(parent_id) {
                         }
                     }
 
-                    o[2] = parseInteger(o[2]) + 1 //increment our position value for next time
+                    o[2] = parseInteger(o[2]) + 1 // increment our position value for next time
 
                     if (x === accurate_index) {
                         // this item is already in the perfect location so we don't have to do anything
@@ -483,7 +483,7 @@ s.sort = function s_sort(id, parent_id, recurse, ancestor) {
                 var i
                 for (i in a) {
                     if (a[i].url === undefined) {
-                        //we have a folder so recursively call our own function to support unlimited folder depth
+                        // we have a folder so recursively call our own function to support unlimited folder depth
                         s.sort(a[i].id, a[i].id, recurse, ancestor)
                     }
                 }
@@ -581,7 +581,6 @@ s.sort = function s_sort(id, parent_id, recurse, ancestor) {
                             sort = 0 // default return value (no sorting)
 
                             // there is a case when two items have the same name they will trade places every sort
-                            // im not sure why either so please enlighten me at sprucemarks@forestmist.org if you can figure it out
                             // to combat this we'll get more and more specific so there will never be a 0 sort order returned
 
                             // sort on case
@@ -590,7 +589,7 @@ s.sort = function s_sort(id, parent_id, recurse, ancestor) {
                             } else if (a.title > b.title) {
                                 sort = 1
                             } else {
-                                // another 0 so lets get even more specific
+                                // another 0 so let's get even more specific
                                 if (a.url < b.url) {
                                     sort = -1
                                 } else if (a.url > b.url) {
