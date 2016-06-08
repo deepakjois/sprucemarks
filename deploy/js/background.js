@@ -517,6 +517,19 @@ s.sort = function s_sort(id, parent_id, recurse, ancestor) {
                     return (typeof(o.dateAdded) === 'number') ? o.dateAdded : 0
                 }
 
+                function url(o) {
+                    var value = o.url
+
+                    if (value === undefined) {
+                        value = ''
+                    } else {
+                        value = o.url.toLowerCase()
+                        value = value.replace('http://', '').replace('https://', '').replace('ftp://', '').replace('chrome://', '').replace('www.', '')
+                    }
+
+                    return value
+                }
+
                 a.sort(function(a, b) {
                     var sort = ''
 
@@ -567,6 +580,12 @@ s.sort = function s_sort(id, parent_id, recurse, ancestor) {
                             } else if (sortOrder === 'dateReverse') {
                                 valA = date(a)
                                 valB = date(b)
+                            } else if (sortOrder === 'url') {
+                                valA = url(a)
+                                valB = url(b)
+                            } else if (sortOrder === 'urlReverse') {
+                                valA = url(b)
+                                valB = url(a)
                             } else {
                                 valA = title(a)
                                 valB = title(b)
